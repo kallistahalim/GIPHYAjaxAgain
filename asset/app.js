@@ -3,13 +3,18 @@ var searchArray = ["puppy", "kitties", "birdie"];
 function generateButtons() {
     for (var i = 0; i < searchArray.length; i++) {
         var button = $("<button>");
-        
+        button.text(searchArray[i]);
+        button.data("name", searchArray[i]);
+        button.addClass("search-button");
+        $("#button-here").append(button);
+
     }
 }
 
+generateButtons();
 
 
-$("button").on("click", function () {
+$(".search-button").on("click", function () {
     var name = $(this).data("name");
     var queryUrl = "http://api.giphy.com/v1/gifs/search?q=" + name + "&api_key=ckvCPO4jnCg338m2CttOtkDLb1bmZjK0&limit=10";
 
