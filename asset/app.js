@@ -12,6 +12,7 @@ function generateButtons() {
     }
 
     $(".search-button").on("click", function () {
+        $("#show-giphy-here").empty();
         var name = $(this).data("name");
         var queryUrl = "http://api.giphy.com/v1/gifs/search?q=" + name + "&api_key=ckvCPO4jnCg338m2CttOtkDLb1bmZjK0&limit=10";
     
@@ -34,7 +35,7 @@ function generateButtons() {
                     image.attr("height", 100);
                     image.addClass("image-class");
                     imageDiv.append(image);
-                    $("#show-giphy-here").prepend(image);
+                    $("#show-giphy-here").prepend(image, "<br>");
                 }
             })
     });
@@ -58,5 +59,6 @@ $("#submit-value").on("click", function() {
     var addButton = $("input").eq(0).val();
     searchArray.push(addButton);
     generateButtons();
+
 })
 
