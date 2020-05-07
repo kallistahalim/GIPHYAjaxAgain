@@ -1,3 +1,13 @@
+var searchArray = ["puppy", "kitties", "birdie"];
+
+function generateButtons() {
+    for (var i = 0; i < searchArray.length; i++) {
+        var button = $("<button>");
+        
+    }
+}
+
+
 
 $("button").on("click", function () {
     var name = $(this).data("name");
@@ -10,12 +20,29 @@ $("button").on("click", function () {
         .done(function (response) {   
             
             for(var i = 0; i < response.data.length; i++) {
-                console.log(queryUrl)
+                console.log(response.data);
+                var imageDiv = $("<div>");
                 var image = $("<img>");
-                image.attr("src",response.data[i].images.downsized_large.url);
+                var still = response.data[i].images.fixed_height_small_still.url;
+                var animated = response.data[i].images.downsized_large.url;
+                image.attr("src",still);
+                image.attr("data-still", still);
+                image.attr("data-animated", animated);
+                image.attr("data-state", "still");
                 image.attr("height", 100);
+                image.addClass("image-class");
+                imageDiv.append(image);
                 $("#show-giphy-here").prepend(image);
             }
         })
-
 });
+
+
+$(document).on("click", ".image-class", function() {
+    var state = $(this).data("state");
+    if(state == "still") {
+        $(this).attr("src", $(this).data("animated"));
+        $(this).attr("data-state", "animated");
+    }
+});
+
