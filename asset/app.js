@@ -56,6 +56,5 @@ $("#submit-value").on("click", function() {
     var addButton = $("input").eq(0).val();
     searchArray.push(addButton);
     generateButtons();
-    $("#input").value("");
 })
 
