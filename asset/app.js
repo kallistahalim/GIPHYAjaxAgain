@@ -1,6 +1,7 @@
 var searchArray = ["puppy", "kitties", "birdie"];
 
 function generateButtons() {
+    $("#button-here").empty();
     for (var i = 0; i < searchArray.length; i++) {
         var button = $("<button>");
         button.text(searchArray[i]);
@@ -50,4 +51,11 @@ $(document).on("click", ".image-class", function() {
         $(this).attr("data-state", "animated");
     }
 });
+
+$("#submit-value").on("click", function() {
+    var addButton = $("input").eq(0).val();
+    searchArray.push(addButton);
+    generateButtons();
+    $("#input").value("");
+})
 
